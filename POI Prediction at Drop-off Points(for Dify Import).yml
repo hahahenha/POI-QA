@@ -1,0 +1,705 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: POI Prediction at Drop-off Points
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/xinference:0.0.2@04dee9c8396689421df7537f73ebb4b26efbcb7e0b9c32b7f09236e84bb97b3c
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/ollama:0.0.3@9ded90ac00e8510119a24be7396ba77191c9610d5e1e29f59d68fa1229822fc7
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 03bf19fa-6271-4611-83b8-76a55623de32
+    name: system_prompt
+    selector:
+    - env
+    - system_prompt
+    value: '# User questions have the following format: The vehicle departure time
+      is: xxx, and the starting point of the vehicle is near the following POIs: [xxx
+      (large category, medium category, small category), ...] Please predict which
+      POIs are near the vehicle''s destination? Please reply to the user in the following
+      format: The POIs near the vehicle''s destination are: [xxx (large category,
+      medium category, small category), ...].'
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 50
+        file_size_limit: 20
+        image_file_size_limit: 10
+        video_file_size_limit: 500
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1742784198840-source-1742784499407-target
+      selected: false
+      source: '1742784198840'
+      sourceHandle: source
+      target: '1742784499407'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1742784140672-source-1742791293699-target
+      selected: false
+      source: '1742784140672'
+      sourceHandle: source
+      target: '1742791293699'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1742791293699-source-1742791419468-target
+      selected: false
+      source: '1742791293699'
+      sourceHandle: source
+      target: '1742791419468'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1742791419468-source-1742791460022-target
+      selected: false
+      source: '1742791419468'
+      sourceHandle: source
+      target: '1742791460022'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        sourceType: code
+        targetType: llm
+      id: 1742792100904-source-1742791505075-target
+      source: '1742792100904'
+      sourceHandle: source
+      target: '1742791505075'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1742791460022-source-1742792663853-target
+      source: '1742791460022'
+      sourceHandle: source
+      target: '1742792663853'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        sourceType: llm
+        targetType: code
+      id: 1742791505075-source-1742792696493-target
+      source: '1742791505075'
+      sourceHandle: source
+      target: '1742792696493'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1742792663853-source-1742784198840-target
+      source: '1742792663853'
+      sourceHandle: source
+      target: '1742784198840'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1742791460022start-source-1743147836775-target
+      source: 1742791460022start
+      sourceHandle: source
+      target: '1743147836775'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1743147836775-source-1742792100904-target
+      source: '1743147836775'
+      sourceHandle: source
+      target: '1742792100904'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: query
+          max_length: 4096
+          options: []
+          required: true
+          type: paragraph
+          variable: query
+      height: 90
+      id: '1742784140672'
+      position:
+        x: 30
+        y: 288.5
+      positionAbsolute:
+        x: 30
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            num_ctx: 64000
+            num_predict: 32000
+            temperature: 0.5
+          mode: chat
+          name: deepseek-r1:32b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: f3c4ddac-704f-46eb-97ca-f219023a340d
+          role: system
+          text: '{{#env.system_prompt#}}
+
+            '
+        - id: fc7cf32d-7324-4ad6-947f-f1802b31b210
+          role: user
+          text: '{{#1742792663853.result#}}'
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1742784198840'
+      position:
+        x: 2532.7431579200265
+        y: 288.5
+      positionAbsolute:
+        x: 2532.7431579200265
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742784198840'
+          - text
+          variable: result
+        - value_selector:
+          - '1742792663853'
+          - result
+          variable: prompt
+        - value_selector:
+          - env
+          - system_prompt
+          variable: system
+        selected: true
+        title: End
+        type: end
+      height: 142
+      id: '1742784499407'
+      position:
+        x: 2823.5480788122973
+        y: 288.5
+      positionAbsolute:
+        x: 2823.5480788122973
+        y: 288.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params: {}
+          mode: chat
+          name: qwen2.5:32b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: c230d74d-9902-47e4-a1c5-718373b96b32
+          role: system
+          text: 'You are a useful Chinese intelligent assistant. You do not need to
+            reply directly to the user''s question, but break it down into a series
+            of POI points that need to be searched in order (the name needs to be
+            enclosed in angle brackets): <name> (large category, medium category,
+            small category), and list them in the following format, so that you can
+            provide users with more accurate answers based on the search information
+            later:
+
+            [search text start]xxx[search text end],
+
+            [search text start]yyy[search text end],
+
+            ...
+
+            Must be listed in the format of "[search text start]" and "[search text
+            end]".'
+        - id: b87687a0-86d6-4748-adde-7af1796a8c0c
+          role: user
+          text: '{{#1742784140672.query#}}'
+        selected: false
+        title: Split retrieval task
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1742791293699'
+      position:
+        x: 335.8850113011041
+        y: 288.5
+      positionAbsolute:
+        x: 335.8850113011041
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import re\ndef main(text: str) -> dict:\n    # Find content after </think>\n\
+          \    think_end_index = text.find('</think>') + len('</think>')\n    text\
+          \ = text[think_end_index:]\n    # Extract text between [search text start]\
+          \ and [search text end]\n    search_pattern = r'\\[search text start\\](.*?)\\\
+          [search text end\\]'\n    result = re.findall(search_pattern, text)\n  \
+          \  if len(result) == 0:\n        search_pattern = r'\\[search text start\\\
+          ](.*?)\\[/search text end\\]'\n        result = re.findall(search_pattern,\
+          \ text)\n    result_text = \"\"\n    if len(result) > 0:\n        result_text\
+          \ = \"You want to search in order：\"\n        flag = False\n        for\
+          \ query in result:\n            if flag:\n                result_text +=\
+          \ \"，\"\n            result_text += query\n            flag = True\n   \
+          \     result_text += \"。\"\n    return {\"result\": result,\"result_text\"\
+          : result_text}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+          result_text:
+            children: null
+            type: string
+        selected: false
+        title: Search List
+        type: code
+        variables:
+        - value_selector:
+          - '1742791293699'
+          - text
+          variable: text
+      height: 54
+      id: '1742791419468'
+      position:
+        x: 639.4285714285714
+        y: 288.5
+      positionAbsolute:
+        x: 639.4285714285714
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 205
+        is_parallel: false
+        iterator_selector:
+        - '1742791419468'
+        - result
+        output_selector:
+        - '1742792100904'
+        - result
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1742791460022start
+        title: Loop
+        type: iteration
+        width: 1233.9702888301604
+      height: 205
+      id: '1742791460022'
+      position:
+        x: 942
+        y: 288.5
+      positionAbsolute:
+        x: 942
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1234
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1742791460022start
+      parentId: '1742791460022'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 966
+        y: 356.5
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        model:
+          completion_params:
+            num_ctx: 64000
+            num_predict: 32000
+            temperature: 0.5
+          mode: chat
+          name: deepseek-r1:32b
+          provider: langgenius/ollama/ollama
+        prompt_template:
+        - id: 182cd0ef-4e67-4764-abb7-8a683d85831c
+          role: system
+          text: ''
+        - id: 9503b9ed-6096-4198-833c-62b911e85a3c
+          role: user
+          text: '# {{#1742791419468.result_text#}}
+
+
+            # The following are the search results for {{#1742791460022.item#}}:
+
+            {{#1742792100904.result#}}
+
+            In the search results I gave you, each result is in the format of [content
+            X begin]...[content X end], where X represents the numerical index of
+            each article.
+
+            When answering, please pay attention to the following points:
+
+            - Not all the content of the search results is closely related to the
+            user''s question. You need to identify and filter the search results in
+            combination with the question.
+
+            - For enumeration questions (such as enumerating all flight information),
+            try to limit the answer to 10 points or less, and tell the user that they
+            can check the search source and get complete information. Give priority
+            to providing complete and most relevant enumeration items; if not necessary,
+            do not actively tell the user content that is not provided by the search
+            results.
+
+            - If the answer is long, please try to structure it and summarize it in
+            paragraphs. If you need to answer in points, try to limit it to 5 points
+            or less, and merge related content.
+
+            - You need to choose a suitable and beautiful answer format based on the
+            user''s requirements and the answer content to ensure strong readability.
+
+            - Your answer should be based on multiple relevant search results, and
+            you cannot quote a web page repeatedly.
+
+            - Unless the user requires otherwise, the language of your answer should
+            be consistent with the language of the user''s question.
+
+
+            # User message:
+
+            {{#1742784140672.query#}}
+
+
+            # Please do not answer the user''s question here, but summarize the key
+            content of "{{#1742791460022.item#}}", no more than 300 words.'
+        selected: false
+        title: Search Results Summary
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1742791505075'
+      parentId: '1742791460022'
+      position:
+        x: 669.9702888301603
+        y: 65
+      positionAbsolute:
+        x: 1611.9702888301604
+        y: 353.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "import json\nimport re\ndef main(data) -> dict:\n    # Initialize an\
+          \ empty list to hold the formatted results\n    formatted_result = []\n\n\
+          \    # Loop through each item in the data and format it\n    for item in\
+          \ data:\n        position = item[\"metadata\"][\"position\"]\n        content\
+          \ = item[\"content\"]\n        # Use regular expression to extract everything\
+          \ after '\\nanswer:'\n        match = re.search(r'\\nanswer:(.*)', content)\n\
+          \        # Check if a match was found and extract the result\n        if\
+          \ match:\n            content = match.group(1).strip()\n        # Format\
+          \ the content as \"[content X begin]YYYY[content X end]\"\n        formatted_content\
+          \ = f\"[content {position} begin]{content}[content {position} end]\"\n \
+          \       formatted_result.append(formatted_content)\n\n    # Join all formatted\
+          \ contents into a single string\n    final_output = \"\".join(formatted_result)\n\
+          \    return {\n        \"result\": final_output,\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Search results formatting
+        type: code
+        variables:
+        - value_selector:
+          - '1743147836775'
+          - result
+          variable: data
+      height: 54
+      id: '1742792100904'
+      parentId: '1742791460022'
+      position:
+        x: 369.97028883016037
+        y: 65
+      positionAbsolute:
+        x: 1311.9702888301604
+        y: 353.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        code: "\ndef main(lst: list[str], query: str, searchkeywords: str) -> dict:\n\
+          \    res = \"# User's question is：\" + query + \"\\n\\n# \" + searchkeywords\
+          \ + \"\\n\\n# The search results are as follows：\\n\"\n    for row in lst:\n\
+          \        res += row + \"\\n\"\n    return {\n        \"result\": res,\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Prompt Generate
+        type: code
+        variables:
+        - value_selector:
+          - '1742791460022'
+          - output
+          variable: lst
+        - value_selector:
+          - '1742784140672'
+          - query
+          variable: query
+        - value_selector:
+          - '1742791419468'
+          - result_text
+          variable: searchkeywords
+      height: 54
+      id: '1742792663853'
+      position:
+        x: 2236
+        y: 288.5
+      positionAbsolute:
+        x: 2236
+        y: 288.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import re\ndef main(input_string: str) -> dict:\n    # Use regular\
+          \ expression to remove content between <think> and </think>\n    output_string\
+          \ = re.sub(r'<think>.*?</think>', '', input_string)\n    return {\n    \
+          \    \"result\": output_string,\n    }\n"
+        code_language: python3
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Result formatting
+        type: code
+        variables:
+        - value_selector:
+          - '1742791505075'
+          - text
+          variable: input_string
+      height: 54
+      id: '1742792696493'
+      parentId: '1742791460022'
+      position:
+        x: 973.9702888301603
+        y: 65
+      positionAbsolute:
+        x: 1915.9702888301604
+        y: 353.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    - data:
+        dataset_ids:
+        - mCyadTIhEy1OVyvFKnVrwnr/PJCxA5KGEoeTTmRAvzcjD1f/gPPxJbDB+/jc4rhd
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1742791460022'
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: bge-reranker-large
+            provider: langgenius/xinference/xinference
+          top_k: 4
+        query_variable_selector:
+        - '1742791460022'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 92
+      id: '1743147836775'
+      parentId: '1742791460022'
+      position:
+        x: 95.66526479185836
+        y: 65
+      positionAbsolute:
+        x: 1037.6652647918584
+        y: 353.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+      zIndex: 1002
+    viewport:
+      x: -1493.8878024077303
+      y: 112.93040837175579
+      zoom: 0.8040888484979275

@@ -2,3 +2,4 @@ This hub is link to the paper "A Dataset for Spatiotemporal-Sensitive\\POI Quest
 
 The dataset is available at https://kaggle.com/datasets/98e1a4f4df9c03302c3d6e953f324b18a71411584210c91d2e01d3598fe0b983
 
+The test environment is built on the Dify platform： https://github.com/langgenius/dify. Besides, the model fine-tuning combines the contents of the following github repository: https://github.com/hiyouga/LLaMA-Factory
